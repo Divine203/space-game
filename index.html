@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" onclick="jump();">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3d flappy bird</title>
+</head>
+<body>
+	<div id="game">
+		<div id="block">
+			<div id="front_block">
+				<img src="block_flappybird.png" width="50px" height="800px">
+			</div>
+			<div id="back_block">
+				<img src="block_flappybird.png" width="50px" height="800px">
+			</div>
+			<div id="left_block">
+				<img src="block_flappybird.png" width="50px" height="800px">
+			</div>
+			<div id="right_block">
+				<img src="block_flappybird.png" width="50px" height="800px">
+			</div>
+		</div>
+		<div id="hole">
+			<div id="front_hole"></div>
+			<div id="back_hole"></div>
+			<div id="left_hole"></div>
+			<div id="right_hole"></div>
+		</div>
+		<div id="character">
+			<div id="front_character"></div>
+			<div id="back_character"></div>
+			<div id="left_character">
+				<img style="position: absolute;" src="bird.png" width="50px" height="50px">
+				<div id="wing1"></div>
+			</div>
+			<div id="right_character">
+				<img style="position: absolute;" src="bird.png" width="50px" height="50px">
+				<div id="wing2"></div>
+			</div>
+			<div id="top_character"></div>
+			<div id="bottom_character"></div>
+		</div>
+		<div id="ground"></div>
+	</div>
+</body>
+<script src="script.js"></script>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background: rgb(146, 207, 228);
+		transform-style: preserve-3d;
+	}
+	#game{
+		width: 700px;
+		height: 500px;
+		margin: auto; 
+		transform: rotateX(-14deg) rotateY(60deg);
+		transform-style: preserve-3d;
+	}
+	#block{
+		width: 50px;
+		height: 500px;
+		position: relative;
+		left: 1500px;
+		transform-style: preserve-3d;
+		animation: block 3s infinite linear;
+	}
+	@keyframes block{
+		0%{ left: 1500px;}
+		100%{ left: -800px;}
+	}
+
+	#front_block{
+		width: 50px;
+		height: 800px;
+		background: green;
+		position: absolute;
+		top: -100px;
+	}
+	#back_block{
+		width: 50px;
+		height: 800px;
+		background: green;
+		position: absolute;
+		top: -100px;
+		transform: translateZ(-50px);
+	}
+	#left_block{
+		width: 50px;
+		height: 800px;
+		background: green;
+		position: absolute;
+		top: -100px;
+		left: -50px;
+		transform: rotateY(-90deg);
+		transform-origin: right;
+	}
+	#right_block{
+		width: 50px;
+		height: 800px;
+		background: green;
+		position: absolute;
+		top: -100px;
+		left: 50px;
+		transform: rotateY(90deg);
+		transform-origin: left;
+	}
+	#hole{
+		width: 50px;
+		height: 150px;
+		position: relative;
+		left: 400px;
+		top: -500px;
+		animation: block 3s infinite linear;
+		transform-style: preserve-3d;
+	}
+	#front_hole{
+		width: 50px;
+		height: 150px;
+		background: rgb(146, 207, 228);
+		position: absolute;
+	}
+	#back_hole{
+		width: 50px;
+		height: 150px;
+		background: rgb(146, 207, 228);
+		position: absolute;
+		transform: translateZ(-50.1px);
+	}
+	#left_hole{
+		width: 50px;
+		height: 150px;
+		background: rgb(146, 207, 228);
+		position: absolute;
+		left: -50px;
+		transform: rotateY(-90deg);
+		transform-origin: right;
+	}
+	#right_hole{
+		width: 50px;
+		height: 150px;
+		background: rgb(146, 207, 228);
+		position: absolute;
+		left: 50px;
+		transform: rotateY(90deg);
+		transform-origin: left;
+	}
+	#character{
+		width: 30px;
+		height: 30px;
+		background: red;
+		position: absolute;
+		top: 100px;
+		transform: rotateY(90deg);
+		transform-style: preserve-3d;
+	}
+	#front_character{
+		width: 50px;
+		height: 50px;
+		background: orange;
+		position: absolute;
+	}
+	#back_character{
+		width: 50px;
+		height: 50px;
+		background: orange;
+		position: absolute;
+		transform: translateZ(-50px);
+	}
+	#left_character{
+		width: 50px;
+		height: 50px;
+		background: orange;
+		position: absolute;
+		left: -50px;
+		transform-style: preserve-3d;
+		transform: rotateY(-90deg);
+		transform-origin: right;
+	}
+	#right_character{
+		width: 50px;
+		height: 50px;
+		background: rgb(228, 162, 40);
+		position: absolute;
+		left: 50px;
+		transform-style: preserve-3d;
+		transform: rotateY(90deg);
+		transform-origin: left;
+	}
+
+	#top_character{
+		width: 50px;
+		height: 50px;
+		background: rgb(228, 162, 40);
+		position: absolute;
+		top: -50px;
+		transform: rotateX(90deg);
+		transform-origin: bottom;
+	}
+
+	#bottom_character{
+		width: 50px;
+		height: 50px;
+		background: purple;
+		position: absolute;
+		top: 50px;
+		transform: rotateX(-90deg);
+		transform-origin: top;
+	}
+		#wing1{
+			width: 50px;
+			height: 50px;
+			background: yellow;
+			margin-top: 25px;
+			transform: rotateX(90deg);
+			transform-origin: top;
+			animation: flapA 1s infinite 0s;
+		}
+		@keyframes flapA{
+			0%{
+				transform: rotateX(90deg);
+			}
+			50%{
+				transform: rotateX(10deg);
+			}
+			100%{
+				transform: rotateX(90deg);
+			}
+		}
+		#wing2{
+			width: 50px;
+			height: 50px;
+			background: yellow;
+			margin-top: 25px;
+			transform: rotateX(90deg);
+			transform-origin: top;
+			animation: flapB 1s infinite 0s;
+		}
+		@keyframes flapB{
+			0%{
+				transform: rotateX(90deg);
+			}
+			50%{
+				transform: rotateX(10deg);
+			}
+			100%{
+				transform: rotateX(90deg);
+			}
+		}
+		#ground{
+			width: 7500px;
+			height: 1100px;
+			background: brown;
+			position: absolute;
+			top: 100px;
+			left: -1000px;
+			transform: rotateX(90deg) translateY(200px);
+		}
+	</style>
+</html>
